@@ -28,6 +28,7 @@ specifiers:
   eslint-config-next: 12.3.1
   next: 12.3.1
   prettier: ^2.7.1
+  prisma: 4.3.1
   react: 18.2.0
   react-custom-scrollbars: ^4.2.1
   react-dom: 18.2.0
@@ -70,6 +71,7 @@ devDependencies:
   '@types/react-dom': 18.0.6
   eslint: 8.23.1
   eslint-config-next: 12.3.1_irgkl5vooow2ydyo6aokmferha
+  prisma: 4.3.1
   typescript: 4.8.3
 
 packages:
@@ -929,6 +931,11 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
+    dev: true
+
+  /@prisma/engines/4.3.1:
+    resolution: {integrity: sha512-4JF/uMaEDAPdcdZNOrnzE3BvrbGpjgV0FcPT3EVoi6I86fWkloqqxBt+KcK/+fIRR0Pxj66uGR9wVH8U1Y13JA==}
+    requiresBuild: true
     dev: true
 
   /@radix-ui/number/1.0.0:
@@ -2775,6 +2782,15 @@ packages:
     dependencies:
       react: 18.2.0
     dev: false
+
+  /prisma/4.3.1:
+    resolution: {integrity: sha512-90xo06wtqil76Xsi3mNpc4Js3SdDRR5g4qb9h+4VWY4Y8iImJY6xc3PX+C9xxTSt1lr0Q89A0MLkJjd8ax6KiQ==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@prisma/engines': 4.3.1
+    dev: true
 
   /process-nextick-args/2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}

@@ -1,6 +1,6 @@
 import {Navbar, Text} from "@mantine/core";
 import Link from "next/link";
-import {DarkThemeToggle} from "./darkModeToggle";
+import {DarkThemeToggle} from "../darkModeToggle";
 
 export default function Sidebar(props: { opened: boolean, currentTheme: any, setDarkMode: any }) {
 
@@ -18,7 +18,7 @@ export default function Sidebar(props: { opened: boolean, currentTheme: any, set
         <Navbar.Section>
             <div>
                 {/* add a link to the user's profile*/}
-                <Link href="/profile">Profile</Link>
+                <Link href="/pages/profile">Profile</Link>
             </div>
         </Navbar.Section>
     </Navbar>;

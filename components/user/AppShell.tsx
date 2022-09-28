@@ -10,9 +10,9 @@ import {
     Burger,
     useMantineTheme,
 } from '@mantine/core';
-import styles from "../styles/Home.module.css";
+import styles from "../../styles/Home.module.css";
 import Image from "next/image";
-import {DarkThemeToggle} from "./darkModeToggle";
+import {DarkThemeToggle} from "../darkModeToggle";
 
 
 

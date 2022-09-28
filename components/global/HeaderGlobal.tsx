@@ -1,6 +1,6 @@
 import {ActionIcon, Burger, Group, Header, MediaQuery, useMantineTheme} from "@mantine/core";
 import Image from "next/image";
-import {DarkThemeToggle} from "./darkModeToggle";
+import {DarkThemeToggle} from "../darkModeToggle";
 import {IconMoonStars, IconSun} from "@tabler/icons";
 
 

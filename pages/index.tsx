@@ -2,8 +2,8 @@ import type {NextPage} from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import AppShellDemo from "../components/AppShell";
-import AppShellGlobal from "../components/AppShellGlobal";
+import AppShellDemo from "../components/user/AppShell";
+import AppShellGlobal from "../components/global/AppShellGlobal";
 
 // @ts-ignore
 const Home: NextPage = ({currentTheme, setDarkMode}: { currentTheme: any, setDarkMode: any }) => {

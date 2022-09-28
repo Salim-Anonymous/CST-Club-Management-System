@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import Sidebar from "./Sidebar";
+import Sidebar from "../user/Sidebar";
 import { Scrollbars } from 'react-custom-scrollbars';
 import {
     AppShell,
@@ -11,12 +11,12 @@ import {
     Burger,
     useMantineTheme,
 } from '@mantine/core';
-import styles from "../styles/Home.module.css";
+import styles from "../../styles/Home.module.css";
 import Image from "next/image";
-import {DarkThemeToggle} from "./darkModeToggle";
+import {DarkThemeToggle} from "../darkModeToggle";
 import {SidebarGlobal} from './SidebarGlobal';
 import {NewsFeed} from "./NewsFeed";
-import ClubRecommendation from "./Clubs";
+import ClubRecommendation from "./ClubsGlobal";
 import HeaderGlobal from "./HeaderGlobal"
 
 

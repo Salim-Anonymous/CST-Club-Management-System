@@ -6,6 +6,157 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+//club activities management system
+//entities
+enum Roles {
+  ADMIN
+  USER
+}
+
+enum EnrollmentStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum ActivityType {
+  MEETING
+  EVENT
+  WORKSHOP
+  OTHER
+}
+
+enum ActivityStatus {
+  UPCOMING
+  ONGOING
+  COMPLETED
+  POSTPONED
+  PREPONED
+}
+
+enum ClubRoles {
+  PRESIDENT
+  VICE_PRESIDENT
+  SECRETARY
+  TREASURER
+  TUTOR
+  NORMAL
+}
+
+enum Visibility {
+  PUBLIC
+  PRIVATE
+}
+
+model User {
+  id                 Int                  @id @default(autoincrement())
+  name               String
+  email              String               @unique
+  password           String
+  role               Roles                @default(USER)
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  Clubs              ClubMember[]
+  EnrollmentRequests  EnrollmentRequest[]
+  ActivityEnrollments ActivityEnrollment[]
+}
+
+model Club {
+  id                Int                 @id @default(autoincrement())
+  name              String
+  description       String
+  icon              String
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  Members           ClubMember[]
+  EnrollmentRequests EnrollmentRequest[]
+  Activities      ClubActivity[]
+  News          ClubNews[]
+}
+
+model ClubMember {
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  clubId    Int
+  club      Club      @relation(fields: [clubId], references: [id])
+  userId    Int
+  user      User      @relation(fields: [userId], references: [id])
+  role      ClubRoles @default(NORMAL)
+
+  @@id([clubId, userId])
+}
+
+model EnrollmentRequest {
+  id        Int              @id @default(autoincrement())
+  status    EnrollmentStatus @default(PENDING)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+  clubId    Int
+  club      Club             @relation(fields: [clubId], references: [id])
+  userId    Int
+  user      User             @relation(fields: [userId], references: [id])
+}
+
+//
+//
+//
+model Activity {
+  id                 Int                  @id @default(autoincrement())
+  name               String
+  description        String
+  type               ActivityType
+  status             ActivityStatus       @default(UPCOMING)
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  Club               ClubActivity[]
+  Enrollments        ActivityEnrollment[]
+}
+
+//
+model ClubActivity {
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  clubId     Int
+  club       Club     @relation(fields: [clubId], references: [id])
+  activityId Int
+  activity   Activity @relation(fields: [activityId], references: [id])
+
+  @@id([clubId, activityId])
+}
+
+model ActivityEnrollment {
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  activityId Int
+  activity   Activity @relation(fields: [activityId], references: [id])
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id])
+  attended   Boolean  @default(false)
+
+  @@id([activityId, userId])
+}
+
+model News {
+  id         Int        @id @default(autoincrement())
+  title      String
+  content    String
+  visibility Visibility @default(PRIVATE)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  Club       ClubNews[]
+}
+
+model ClubNews {
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  clubId    Int
+  club      Club     @relation(fields: [clubId], references: [id])
+  newsId    Int
+  news      News     @relation(fields: [newsId], references: [id])
+
+  @@id([clubId, newsId])
 }
